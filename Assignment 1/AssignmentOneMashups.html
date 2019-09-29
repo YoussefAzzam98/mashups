@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width">
+		<title>Mashups Assignment 1 APIs</title>
+		<!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+		<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+
+
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
+
+		</script>
+
+<script>
+
+function today(){
+	var url= "https://api.nytimes.com/svc/mostpopular/v2/emailed/1.json";
+			url+= '?'+ $.param({
+				'api-key':"AjRLtngeebJHxeMoeVnhVuLlCktZUUvs"
+			});
+
+
+			$.ajax({
+								url: url,
+								method: 'GET',
+							}).done(function(result) {
+
+								var i;
+								for(i=0; i <5; i++){
+								document.getElementById("displayResults").innerHTML = JSON.stringify(result.results[i].title);
+								console.log(result.results[1]);
+								}
+							}).fail(function(err) {
+								throw err;
+							});
+}
+
+function PastWeek(){
+	var url= "https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json";
+			url+= '?'+ $.param({
+				'api-key':"AjRLtngeebJHxeMoeVnhVuLlCktZUUvs"
+			});
+
+
+			$.ajax({
+								url: url,
+								method: 'GET',
+							}).done(function(result) {
+
+								var i;
+								for(i=0; i <5; i++){
+								document.getElementById("displayResults").innerHTML = JSON.stringify(result.results[i].title);
+								console.log(result.results[1]);
+								}
+							}).fail(function(err) {
+								throw err;
+							});
+}
+
+function PastMonth(){
+	var url= "https://api.nytimes.com/svc/mostpopular/v2/emailed/30.json";
+			url+= '?'+ $.param({
+				'api-key':"AjRLtngeebJHxeMoeVnhVuLlCktZUUvs"
+			});
+
+
+			$.ajax({
+								url: url,
+								method: 'GET',
+							}).done(function(result) {
+
+									document.getElementById("displayResults").innerHTML = result.results[0].title;
+								 // document.getElementById("displayResults").innerHTML = result.results[1].title;
+									//document.getElementById("displayResults").innerHTML = JSON.stringify(result.results[2].title);
+									//document.getElementById("displayResults").innerHTML = JSON.stringify(result.results[3].title);
+									//document.getElementById("displayResults").innerHTML = JSON.stringify(result.results[4].title);
+							//		console.log(result.results[]);
+
+
+							}).fail(function(err) {
+								throw err;
+							});
+}
+
+</script>
+
+
+	</head>
+	<p>What do you think haappened...</p>
+
+	<body>
+
+<div>
+	<div>
+		<input type="submit" value = "Today" onclick="today()">
+		<input type="submit" value = "Past Week" onclick="PastWeek()">
+		<input type="submit" value = "Past Month" onclick="PastMonth()">
+		<div id = "displayResults">
+
+		</div>
+	</div>
+</div>
+	</body>
+</html>
